@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+    <h1>Listado de Vehículos</h1>
+
+    <!---------------------------------------------------------------------------------->
+    <a href="{% url 'vehiculoCreate' %}" class="btn btn-primary">Nuevo Vehiculo</a>
+    <!---------------------------------------------------------------------------------->
+    
+    <div class="card-body">
+      <div class="table-responsive">
+    
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <thead>
+        <tr>
+          <td><b>NIV</b></td>
+          <td>No. Motor</td>
+          <td>Marca</td>
+          <td>Línea</td>
+          <td>Modelo</td>
+          <td>Opciones</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in vehiculos %}
+        <tr>
+          <td>{{item.niv}}</td>
+          <td>{{item.noMotor}}</td>
+          <td>{{item.marca}}</td>
+          <td>{{item.linea}}</td>
+          <td>{{item.modelo}}</td>
+          <td>
+            <a class="btn btn-secondary" href="{% url 'vehiculoEdit' item.id %}">Editar</a>
+            <a class="btn btn-danger" href="{% url 'vehiculoDelete' item.id %}" role="button">Eliminar</a>
+  
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>    
+    </div>
+    </div>
+{% endblock %}
